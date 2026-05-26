@@ -1,38 +1,58 @@
 package com.example.cafeteriaapp.screens
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
+import com.example.cafeteriaapp.R
 import com.example.cafeteriaapp.components.AppLogo
 import com.example.cafeteriaapp.components.ScreenContainer
 
 @Composable
 fun AuthorsScreen() {
     ScreenContainer("Autorzy") {
-        Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(Color.White)) {
+        Card(
+            Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            )
+        ) {
             Column(Modifier.padding(22.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 AppLogo()
                 Spacer(Modifier.height(16.dp))
-                Text("CafeteriaApp", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                Text("Aplikacja lojalnosciowa - kawiarnia")
+                Text(
+                    "CafeteriaApp",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    "Aplikacja lojalnosciowa - kawiarnia",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 Spacer(Modifier.height(22.dp))
-                Text("Autor: wpisz swoje imie i nazwisko")
-                Text("Grupa: wpisz swoja grupe")
+                Text(
+                    "Autorzy: Hubert Rola, Lukasz Janus",
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    "Grupa: lab2/3/PROGS",
+                    color = MaterialTheme.colorScheme.onSurface
+                )
                 Spacer(Modifier.height(22.dp))
-                Box(
-                    modifier = Modifier.fillMaxWidth().background(Color(0xFFEEE7DF), RoundedCornerShape(12.dp)).padding(20.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("IDEIS", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color(0xFF795548))
-                }
-                Text("Logo IDEIS - wersja demonstracyjna", textAlign = TextAlign.Center, color = Color(0xFF6D4C41))
+                Image(
+                    painter = painterResource(id = R.drawable.ideis),
+                    contentDescription = "Logo IDEIS",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(72.dp),
+                    contentScale = ContentScale.Fit
+                )
             }
         }
     }

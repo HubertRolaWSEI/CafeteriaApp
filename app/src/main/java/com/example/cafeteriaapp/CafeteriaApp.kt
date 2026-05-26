@@ -1,23 +1,34 @@
 package com.example.cafeteriaapp
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.cafeteriaapp.screens.*
 import kotlinx.coroutines.delay
+import androidx.compose.ui.unit.dp
+
+private data class BottomNavItem(
+    val route: String,
+    val label: String,
+    val icon: String
+)
 
 @Composable
-fun CafeteriaApp() {
+fun CafeteriaApp(viewModel: CafeteriaViewModel) {
     var showSplash by rememberSaveable { mutableStateOf(true) }
     var selectedScreen by rememberSaveable { mutableStateOf("Karta") }
-    var stamps by rememberSaveable { mutableIntStateOf(3) }
+    val preferences by viewModel.preferences.collectAsStateWithLifecycle()
+
+    val navItems = listOf(
+        BottomNavItem("Karta", "Karta", "☕"),
+        BottomNavItem("Nagrody", "Nagrody", "★"),
+        BottomNavItem("Menu", "Menu", "≡"),
+        BottomNavItem("Ustawienia", "Opcje", "⚙")
+    )
 
     LaunchedEffect(Unit) {
         delay(1200)
@@ -30,15 +41,33 @@ fun CafeteriaApp() {
     }
 
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
-            NavigationBar {
-                listOf("Karta", "Nagrody", "Menu", "Ustawienia").forEach { screen ->
+            NavigationBar(
+                containerColor = MaterialTheme.colorScheme.surface,
+                tonalElevation = 8.dp
+            ) {
+                navItems.forEach { item ->
                     NavigationBarItem(
-                        selected = selectedScreen == screen,
-                        onClick = { selectedScreen = screen },
-                        icon = {},
-                        label = { Text(screen) },
-                        alwaysShowLabel = true
+                        selected = selectedScreen == item.route,
+                        onClick = { selectedScreen = item.route },
+                        icon = {
+                            Text(
+                                text = item.icon,
+                                fontSize = 20.sp
+                            )
+                        },
+                        label = {
+                            Text(item.label)
+                        },
+                        alwaysShowLabel = true,
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = MaterialTheme.colorScheme.primary,
+                            selectedTextColor = MaterialTheme.colorScheme.primary,
+                            indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     )
                 }
             }
@@ -46,18 +75,26 @@ fun CafeteriaApp() {
     ) { padding ->
         Surface(
             modifier = Modifier.padding(padding),
-            color = Color(0xFFF7F1EA)
+            color = MaterialTheme.colorScheme.background
         ) {
             when (selectedScreen) {
                 "Karta" -> LoyaltyScreen(
-                    stamps = stamps,
-                    onAddStamp = { stamps = if (stamps < 8) stamps + 1 else 0 }
+                    stamps = preferences.stamps,
+                    onAddStamp = viewModel::addStamp
                 )
-                "Nagrody" -> RewardsScreen(stamps)
+
+                "Nagrody" -> RewardsScreen(preferences.stamps)
+
                 "Menu" -> MenuScreen()
+
                 "Ustawienia" -> SettingsScreen(
+                    notifications = preferences.notificationsEnabled,
+                    darkMode = preferences.darkModeEnabled,
+                    onNotificationsChange = viewModel::setNotificationsEnabled,
+                    onDarkModeChange = viewModel::setDarkModeEnabled,
                     onOpenAuthors = { selectedScreen = "Autorzy" }
                 )
+
                 "Autorzy" -> AuthorsScreen()
             }
         }

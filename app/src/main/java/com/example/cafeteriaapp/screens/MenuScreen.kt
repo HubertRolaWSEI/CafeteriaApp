@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.*
 import com.example.cafeteriaapp.components.ScreenContainer
@@ -22,13 +21,36 @@ fun MenuScreen() {
 
 @Composable
 private fun CafeItem(name: String, description: String, price: String) {
-    Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(Color.White)) {
-        Row(Modifier.fillMaxWidth().padding(18.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+    Card(
+        Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(18.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Column(Modifier.weight(1f)) {
-                Text(name, fontSize = 19.sp, fontWeight = FontWeight.Bold)
-                Text(description, color = Color(0xFF6D4C41))
+                Text(
+                    name,
+                    fontSize = 19.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    description,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
-            Text(price, fontWeight = FontWeight.Bold, color = Color(0xFF795548))
+            Text(
+                price,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
         }
     }
 }
