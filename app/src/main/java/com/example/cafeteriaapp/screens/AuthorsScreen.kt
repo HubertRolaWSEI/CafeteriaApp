@@ -58,9 +58,9 @@ private fun AuthorInfoCard(modifier: Modifier = Modifier) {
             AppLogo(88)
             Spacer(Modifier.height(10.dp))
             Text("CafeteriaApp", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
-            Text("Aplikacja lojalnosciowa - kawiarnia", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("Aplikacja lojalnościowa - kawiarnia", color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(Modifier.height(18.dp))
-            Text("Autorzy: Hubert Rola, Lukasz Janus", color = MaterialTheme.colorScheme.onSurface)
+            Text("Autorzy: Hubert Rola, Łukasz Janus", color = MaterialTheme.colorScheme.onSurface)
             Text("Grupa: lab2/3/PROGS", color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
@@ -69,7 +69,6 @@ private fun AuthorInfoCard(modifier: Modifier = Modifier) {
 @Composable
 private fun IdeisLogoCard(modifier: Modifier = Modifier) {
     AppCard(modifier) {
-        Text("Logo IDEIS", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = MaterialTheme.colorScheme.onSurface)
         Image(
             painter = painterResource(id = R.drawable.ideis),
             contentDescription = "Logo IDEIS",

@@ -82,7 +82,7 @@ private fun Header(modifier: Modifier = Modifier, compact: Boolean = false) {
             color = MaterialTheme.colorScheme.onBackground
         )
         Text(
-            "Program lojalnosciowy kawiarni",
+            "Program lojalnościowy kawiarni",
             fontSize = subtitleSize,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.72f),
             textAlign = TextAlign.Center
@@ -139,7 +139,7 @@ private fun LoyaltyCard(
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        if (missing == 0) "Nagroda gotowa do odbioru" else "Zbieraj pieczatki i odbieraj nagrody",
+                        if (missing == 0) "Nagroda gotowa do odbioru" else "Zbieraj pieczątki i odbieraj nagrody",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = if (compact) 12.sp else 14.sp
                     )
@@ -150,7 +150,7 @@ private fun LoyaltyCard(
 
             Spacer(Modifier.height(gap))
             Text(
-                "$stamps / $maxStamps pieczatek",
+                "$stamps / $maxStamps pieczątek",
                 fontSize = counterSize,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
@@ -175,7 +175,7 @@ private fun LoyaltyCard(
                 onClick = onAddStamp,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(if (stamps < maxStamps) "Dodaj pieczatke" else "Odbierz nagrode")
+                Text(if (stamps < maxStamps) "Dodaj pieczątkę" else "Odbierz nagrodę")
             }
 
             Spacer(Modifier.height(8.dp))
@@ -203,9 +203,9 @@ private fun ProgressBadge(text: String) {
 @Composable
 private fun StatusText(missing: Int) {
     val text = if (missing == 0) {
-        "Gratulacje! Mozesz odebrac dostepna nagrode."
+        "Gratulacje! Możesz odebrać dostępną nagrodę."
     } else {
-        "Brakuje jeszcze $missing pieczatek do darmowej kawy."
+        "Brakuje jeszcze $missing pieczątek do darmowej kawy."
     }
 
     Text(
@@ -252,7 +252,7 @@ private fun StampGrid(stamps: Int, stampSize: Dp, logoSize: Dp) {
                         if (active) {
                             Image(
                                 painter = painterResource(id = R.drawable.cafe),
-                                contentDescription = "Pieczatka",
+                                contentDescription = "Pieczątka",
                                 modifier = Modifier
                                     .size(logoSize)
                                     .clip(CircleShape),

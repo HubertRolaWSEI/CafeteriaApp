@@ -69,7 +69,7 @@ private fun PreferencesCard(
         SectionTitle("Preferencje")
         SettingRow("Powiadomienia o promocjach", "Informacje o nagrodach i odbiorze", notifications, onNotificationsChange)
         HorizontalDivider()
-        SettingRow("Tryb ciemny", "Zmien wyglad aplikacji", darkMode, onDarkModeChange)
+        SettingRow("Tryb ciemny", "Zmień wygląd aplikacji", darkMode, onDarkModeChange)
     }
 }
 
@@ -77,7 +77,7 @@ private fun PreferencesCard(
 private fun AppInfoCard(onOpenAuthors: () -> Unit) {
     AppCard {
         SectionTitle("Aplikacja")
-        Text("CafeteriaApp MVP", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("CafeteriaApp", color = MaterialTheme.colorScheme.onSurfaceVariant)
         Button(onClick = onOpenAuthors, modifier = Modifier.fillMaxWidth()) {
             Text("Informacje o autorach")
         }
@@ -88,9 +88,9 @@ private fun AppInfoCard(onOpenAuthors: () -> Unit) {
 private fun PlannedOptionsCard() {
     AppCard {
         SectionTitle("Planowane opcje")
-        Text("Wybor ulubionej kawiarni", color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Text("Polaczenie z kontem klienta", color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Text("Historia zamowien", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("Wybór ulubionej kawiarni", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("Połączenie z kontem klienta", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("Historia zamówień", color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 

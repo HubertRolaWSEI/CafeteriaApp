@@ -50,7 +50,7 @@ fun SplashScreen() {
                 )
 
                 Text(
-                    "Program lojalnosciowy kawiarni",
+                    "Program lojalnościowy kawiarni",
                     fontSize = 16.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center

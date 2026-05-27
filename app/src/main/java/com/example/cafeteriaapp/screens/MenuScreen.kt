@@ -78,7 +78,7 @@ private fun MenuStatus(isLoading: Boolean, errorMessage: String?, onRefresh: () 
         AppCard {
             Text(errorMessage, color = MaterialTheme.colorScheme.error)
             Button(onClick = onRefresh) {
-                Text("Sprobuj ponownie")
+                Text("Spróbuj ponownie")
             }
         }
     }
@@ -96,7 +96,7 @@ private fun PromotionStatus(
         AppCard {
             Text(errorMessage, color = MaterialTheme.colorScheme.error)
             OutlinedButton(onClick = onRefresh) {
-                Text("Odswiez promocje")
+                Text("Odśwież promocję")
             }
         }
     }
@@ -126,6 +126,11 @@ private fun PromotionCard(promotion: PromotionItem) {
                 PromoCodeBadge(promotion.code)
             }
         }
+        Text(
+            "Potrząśnij telefonem, aby odświeżyć promocję dnia.",
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontSize = 13.sp
+        )
     }
 }
 

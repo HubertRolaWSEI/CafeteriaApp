@@ -22,7 +22,7 @@ object CoffeeNotificationHelper {
             "Nagrody kawiarni",
             NotificationManager.IMPORTANCE_DEFAULT
         ).apply {
-            description = "Powiadomienia o nagrodach w programie lojalnosciowym"
+            description = "Powiadomienia o nagrodach w programie lojalnościowym"
         }
 
         val notificationManager = context.getSystemService(NotificationManager::class.java)
@@ -38,8 +38,8 @@ object CoffeeNotificationHelper {
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification_coffee)
-            .setContentTitle("Nowa nagroda dostepna")
-            .setContentText("$rewardTitle za $requiredStamps pieczatek czeka na odbior.")
+            .setContentTitle("Nowa nagroda dostępna")
+            .setContentText("$rewardTitle za $requiredStamps pieczątek czeka na odbiór.")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
             .build()
